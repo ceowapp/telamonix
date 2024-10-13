@@ -1,0 +1,16 @@
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Node modules
+node_modules
+
+# Vercel configuration
+.vercel
+
+#Next configuration
+.next
+
+# Local Netlify folder
+.netlify

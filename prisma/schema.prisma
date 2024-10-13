@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email       String    @unique 
+  token       String
+  products    Product[] 
+}
+
+model Product {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String
+  description String
+  media       String
+  category    String
+  price       Float   
+  cost        Float   
+  profit      Float    
+  weight      Float  
+  userId      String   @db.Uuid   
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade) 
+}
